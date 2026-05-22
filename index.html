@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sarmad Saeed | Cyber Security Portfolio</title>
+  <meta name="description" content="Cyber security portfolio for Sarmad Saeed (Ghauri_Boy), an MSc Cyber Security graduate from the University of Chester focused on penetration testing, digital forensics, ICS security, randomness testing research, and eBay marketplace operations at Trezlon Ltd.">
+  <meta name="author" content="Sarmad Saeed">
+  <meta name="theme-color" content="#04070d">
+  <meta property="og:title" content="Sarmad Saeed | Cyber Security Portfolio">
+  <meta property="og:description" content="Cyber security portfolio focused on penetration testing, DFIR, ICS security, randomness testing research, and professional marketplace operations.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Orbitron:wght@500;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "mainEntity": {
+      "@type": "Person",
+      "name": "Sarmad Saeed",
+      "alternateName": "Ghauri_Boy",
+      "email": "mailto:sarmadsaeed2002@gmail.com",
+      "nationality": "Pakistani",
+      "address": "United Kingdom",
+      "sameAs": ["https://www.linkedin.com/in/sarmad-saeed-845a7b267"],
+      "knowsAbout": ["Penetration Testing", "Digital Forensics", "Incident Response", "ICS Security", "Randomness Testing", "eBay Marketplace Operations"]
+    }
+  }
+  </script>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="intro-active">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <canvas id="matrixCanvas" class="matrix" aria-hidden="true"></canvas>
+  <div class="ambient ambient-1" aria-hidden="true"></div>
+  <div class="ambient ambient-2" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+
+  <div class="welcome-screen" id="welcomeScreen" role="dialog" aria-modal="true" aria-labelledby="introTitle" aria-describedby="introSummary" aria-hidden="false">
+    <div class="welcome-shell welcome-pro">
+      <div class="shell-bar">
+        <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="shell-label">verified cyber security portfolio</div>
+      </div>
+      <div class="welcome-content welcome-layout">
+        <div class="welcome-kicker">Professional Portfolio</div>
+        <h1 class="identity" id="introTitle">Sarmad Saeed</h1>
+        <p class="welcome-role">MSc Cyber Security Graduate - University of Chester</p>
+        <p class="welcome-copy" id="introSummary">A focused cyber security portfolio covering penetration testing, digital forensics and incident response, ICS security, randomness testing research, and current eBay marketplace operations experience.</p>
+        <div class="welcome-badges" aria-label="Portfolio highlights">
+          <span>Academic Year 2025 - 2026</span>
+          <span>Penetration Testing</span>
+          <span>DFIR</span>
+          <span>ICS Security</span>
+        </div>
+        <div class="welcome-status" aria-label="Profile summary">
+          <div><strong>Degree</strong><span>MSc Cyber Security</span></div>
+          <div><strong>Status</strong><span>Graduated</span></div>
+          <div><strong>Location</strong><span>United Kingdom</span></div>
+        </div>
+        <button id="continueBtn" class="primary-btn welcome-action" type="button">Continue to portfolio</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-wrap">
+    <header class="topbar" role="banner">
+      <div class="brand-block">
+        <div class="brand-logo" aria-hidden="true">
+          <svg viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+            <defs>
+              <linearGradient id="aggrGlow" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="currentColor"/>
+                <stop offset="100%" stop-color="var(--accent-2)"/>
+              </linearGradient>
+            </defs>
+            <path d="M10 24C11 12 20 6 32 6s21 6 22 18c1 8-2 15-7 20v11l-7-5-8 6-8-6-7 5V44c-5-5-8-12-7-20Z" fill="none" stroke="url(#aggrGlow)" stroke-width="2.8" stroke-linejoin="round"/>
+            <path d="M16 19c6 4 12 6 16 6s10-2 16-6" fill="none" stroke="var(--accent-2)" stroke-width="1.9" stroke-linecap="round" opacity="0.88"/>
+            <path d="M20 31l8-6 4 7-4 5h-8v-6Z" fill="currentColor"/>
+            <path d="M44 31l-8-6-4 7 4 5h8v-6Z" fill="currentColor"/>
+            <path d="M29 39h6l3 4-6 5-6-5 3-4Z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>
+            <path d="M22 43c3 3 6 5 10 5s7-2 10-5" fill="none" stroke="var(--accent-2)" stroke-width="2.1" stroke-linecap="round"/>
+            <path d="M20 52h24M25 52l3-6M39 52l-3-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M12 29h7M45 29h7" stroke="var(--accent-2)" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <strong>Ghauri_Boy</strong>
+          <span>Sarmad Saeed</span>
+        </div>
+      </div>
+
+      <nav class="nav-links" id="navLinks" aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#focus">Focus</a>
+        <a href="#projects">Projects</a>
+        <a href="#education">Education</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="top-actions">
+        <button id="themeToggle" class="chip-btn" type="button" aria-label="Switch to light theme" aria-pressed="true">Dark</button>
+        <button id="menuToggle" class="chip-btn menu-btn" type="button" aria-label="Toggle menu" aria-controls="navLinks" aria-expanded="false">Menu</button>
+      </div>
+    </header>
+
+    <main id="main-content" tabindex="-1">
+      <section class="hero container">
+        <div class="hero-copy reveal-up">
+          <div class="eyebrow">Cyber Security Portfolio</div>
+          <h1><span class="accent">Sarmad Saeed</span> / Ghauri_Boy</h1>
+          <p class="lead">MSc Cyber Security graduate from the University of Chester with practical focus on penetration testing, digital forensics, ICS security, and security-focused research. I also bring current professional experience in eBay account management, marketplace campaigns, and product listings at Trezlon Ltd.</p>
+          <div class="hero-tags">
+            <span>Penetration Testing</span>
+            <span>Digital Forensics</span>
+            <span>ICS Security</span>
+            <span>eBay Operations</span>
+          </div>
+          <div class="hero-actions">
+            <a class="primary-btn" href="#projects">View Projects</a>
+            <a class="secondary-btn" href="Sarmad_Saeed_CV.pdf" download>Download CV PDF</a>
+            <a class="secondary-btn" href="https://www.linkedin.com/in/sarmad-saeed-845a7b267" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          </div>
+        </div>
+
+        <aside class="hero-panel terminal-card reveal-up delay-1">
+          <div class="terminal-header">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <div class="terminal-title">identity.console</div>
+          </div>
+          <div class="terminal-body">
+            <div class="line"><span class="prompt">analyst@ghauri</span>:<span class="symbol">~$</span> whoami</div>
+            <div class="output">MSc Cyber Security graduate with practical exposure to offensive security, DFIR, ICS-focused defence, and current marketplace operations work.</div>
+            <div class="line"><span class="prompt">analyst@ghauri</span>:<span class="symbol">~$</span> cat status.txt</div>
+            <div class="output type-target" id="typeTarget"></div>
+            <div class="line"><span class="prompt">analyst@ghauri</span>:<span class="symbol">~$</span> ls contact</div>
+            <ul class="terminal-list">
+              <li>Email: sarmadsaeed2002@gmail.com</li>
+              <li>UK: +44 7376 787044</li>
+              <li>Pakistan: +92 334 9399165</li>
+              <li>Current Location: United Kingdom</li>
+            </ul>
+          </div>
+        </aside>
+      </section>
+
+      <section class="section container" id="about">
+        <div class="section-head reveal-up">
+          <div>
+            <div class="eyebrow">01 / About</div>
+            <h2>Built around real cyber security work.</h2>
+          </div>
+          <p>This portfolio is focused on what matters: education, research, practical security projects, and the technical direction I am building professionally.</p>
+        </div>
+        <div class="about-grid">
+          <article class="glass-card reveal-up">
+            <h3>Profile</h3>
+            <p>I am an MSc Cyber Security graduate from the University of Chester with strong interest in offensive security, incident response, industrial control systems, and security analysis. My background combines hands-on labs, academic projects, research-driven problem solving, and current eBay marketplace operations experience at Trezlon Ltd.</p>
+          </article>
+          <article class="glass-card reveal-up delay-1">
+            <h3>Current Positioning</h3>
+            <p>I completed an <strong>MSc in Cyber Security at the University of Chester (2025 - 2026)</strong> after earning a <strong>Bachelor of Cyber Security from Air University (2020 - 2024)</strong>. My portfolio presents practical project work, research, technical skills, and current professional operations experience with clear evidence and scope.</p>
+          </article>
+          <article class="glass-card reveal-up delay-2">
+            <h3>Location</h3>
+            <p><strong>Nationality:</strong> Pakistan<br><strong>Current Location:</strong> United Kingdom<br><strong>Languages:</strong> Urdu / English</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section container" id="focus">
+        <div class="section-head reveal-up">
+          <div>
+            <div class="eyebrow">02 / Focus Areas</div>
+            <h2>Technical focus.</h2>
+          </div>
+          <p>My direction is clear: build depth in cyber security while also showing current professional skills in marketplace operations and digital product management.</p>
+        </div>
+        <div class="focus-grid">
+          <article class="focus-card reveal-up tilt-card"><h3>Penetration Testing</h3><p>Reconnaissance, web testing, vulnerability identification, tool-based validation, and offensive workflow thinking using tools like Nmap, Burp Suite, Metasploit, Nessus, and OpenVAS.</p></article>
+          <article class="focus-card reveal-up delay-1 tilt-card"><h3>Digital Forensics</h3><p>Artifact analysis, investigative workflow, evidence handling, and incident response fundamentals using Autopsy, FTK Imager, and OS Forensics.</p></article>
+          <article class="focus-card reveal-up delay-2 tilt-card"><h3>ICS Security</h3><p>Interest in industrial control environments, intrusion detection in operational technology contexts, and defensive logic for monitoring industrial systems.</p></article>
+          <article class="focus-card reveal-up delay-3 tilt-card"><h3>Programming & Systems</h3><p>Working knowledge of Python, C++, C#, SQL, HTML/CSS, and practical use of Kali Linux, Ubuntu, Parrot OS, Windows, and virtualized labs.</p></article>
+          <article class="focus-card reveal-up delay-3 tilt-card"><h3>eBay Marketplace Operations</h3><p>Professional experience managing eBay account activity, product listings, listing updates, and campaign execution for marketplace visibility.</p></article>
+        </div>
+      </section>
+
+      <section class="section container" id="projects">
+        <div class="section-head reveal-up">
+          <div>
+            <div class="eyebrow">03 / Projects</div>
+            <h2>Project work.</h2>
+          </div>
+          <p>These projects show the areas I have worked on, with clear scope, practical context, and relevant outcomes.</p>
+        </div>
+        <div class="project-grid">
+          <article class="project-card reveal-up tilt-card project-featured">
+            <div class="card-top"><span class="card-label">Research Dissertation</span><span class="year">2025 - 2026</span></div>
+            <h3>Development of an Integrated Randomness Testing Suite for Comprehensive Analysis and Detection of Vulnerabilities in Pseudorandom and True Random Number Generators</h3>
+            <p>This completed MSc dissertation focused on building a testing framework to evaluate randomness quality and detect weaknesses in PRNG and TRNG systems. The work explored statistical behaviour, test integration, and the security implications of weak or predictable random number generation.</p>
+            <ul>
+              <li>Focuses on identifying vulnerabilities through a more comprehensive randomness testing approach.</li>
+              <li>Connects research with real security concerns around cryptographic reliability and entropy quality.</li>
+              <li>Strengthens analysis, reporting, and research design skills in a technical cyber security context.</li>
+            </ul>
+          </article>
+
+          <article class="project-card reveal-up delay-1 tilt-card">
+            <div class="card-top"><span class="card-label">Final Year Project</span><span class="year">2023 / 2024</span></div>
+            <h3>Intrusion Detection System for Industrial Control Systems</h3>
+            <p>Designed a project around detecting malicious activity, abnormal behavior, and unauthorized access in ICS environments. The goal was to improve visibility into industrial networks and generate alerts when intrusion events were identified.</p>
+            <ul>
+              <li>Built around the specific risks faced in ICS and OT-style environments.</li>
+              <li>Combined monitoring logic with practical detection goals rather than generic security concepts.</li>
+              <li>Reinforced knowledge of anomaly detection, industrial network protection, and defensive design.</li>
+            </ul>
+          </article>
+
+          <article class="project-card reveal-up delay-2 tilt-card">
+            <div class="card-top"><span class="card-label">DFIR Project Work</span><span class="year">2025 - 2026</span></div>
+            <h3>Digital Forensics and Incident Response Labs</h3>
+            <p>Worked through forensic and response-oriented academic tasks covering evidence acquisition, artifact review, structured investigation, and incident handling logic.</p>
+            <ul>
+              <li>Applied DFIR concepts using Autopsy and FTK Imager.</li>
+              <li>Developed familiarity with forensic workflow and evidence-driven reasoning.</li>
+              <li>Improved technical reporting and analytical documentation.</li>
+            </ul>
+          </article>
+
+          <article class="project-card reveal-up delay-2 tilt-card">
+            <div class="card-top"><span class="card-label">Professional Operations</span><span class="year">2025 - Present</span></div>
+            <h3>eBay Account Management and Campaign Operations</h3>
+            <p>Current professional work at Trezlon Ltd covering eBay marketplace operations, campaign execution, and product listing management.</p>
+            <ul>
+              <li>Manage product listings, listing updates, and marketplace-ready product information.</li>
+              <li>Run eBay campaigns to support product visibility and account activity.</li>
+              <li>Maintain structured product content with clear titles, descriptions, pricing, and listing quality.</li>
+            </ul>
+          </article>
+
+          <article class="project-card reveal-up delay-3 tilt-card">
+            <div class="card-top"><span class="card-label">Database Project</span><span class="year">2022</span></div>
+            <h3>Blood Bank Database System</h3>
+            <p>Developed a relational database structure to manage blood donor data, inventory tracking, and supply availability in a more organized and efficient way.</p>
+            <ul>
+              <li>Used SQL and structured data design for a practical real-world use case.</li>
+              <li>Improved system analysis and database architecture thinking.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section container" id="education">
+        <div class="section-head reveal-up">
+          <div>
+            <div class="eyebrow">04 / Education</div>
+            <h2>Academic background.</h2>
+          </div>
+          <p>Both degrees are presented clearly, with relevant modules, coursework, and research work highlighted for recruiters.</p>
+        </div>
+
+        <div class="edu-stack">
+          <article class="edu-card reveal-up tilt-card">
+            <div class="edu-top">
+              <span class="pill">Postgraduate Degree</span>
+              <span class="edu-year">2025 - 2026</span>
+            </div>
+            <h3>MSc Cyber Security | University of Chester</h3>
+            <p>Completed postgraduate study focused on software development, business implications of cyber security, web systems, digital forensics, penetration testing, active defence, and research-led analysis.</p>
+            <div class="module-list">
+              <span>Software Development Techniques</span>
+              <span>Business Implications of Cybersecurity</span>
+              <span>Web Systems</span>
+              <span>Digital Forensics and Incident Response</span>
+              <span>Penetration Testing and Active Defence</span>
+              <span>CO7100 - Research Dissertation</span>
+            </div>
+          </article>
+
+          <article class="edu-card reveal-up delay-1 tilt-card">
+            <div class="edu-top">
+              <span class="pill">Undergraduate Degree</span>
+              <span class="edu-year">2020 - 2024</span>
+            </div>
+            <h3>Bachelor of Cyber Security | Air University</h3>
+            <p>Built the foundation across network security, information security, digital forensics, penetration testing, vulnerability assessment, reverse engineering, databases, software engineering, cryptography, operating systems, and programming.</p>
+            <div class="module-list">
+              <span>Information Security</span>
+              <span>Computer Networks</span>
+              <span>Network Security</span>
+              <span>Penetration Testing</span>
+              <span>Digital Forensics</span>
+              <span>Vulnerability Assessment</span>
+              <span>Reverse Engineering</span>
+              <span>Cryptography</span>
+              <span>Databases</span>
+              <span>Software Engineering</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section container" id="experience">
+        <div class="section-head reveal-up">
+          <div>
+            <div class="eyebrow">05 / Experience & Credentials</div>
+            <h2>Professional experience and credentials.</h2>
+          </div>
+          <p>The profile combines current e-commerce operations experience, cybersecurity internship exposure, certificates, awards, and academic participation.</p>
+        </div>
+        <div class="experience-grid">
+          <article class="glass-card reveal-up tilt-card">
+            <h3>E-commerce Operations / eBay Account Management | Trezlon Ltd</h3>
+            <span class="subline">April 2025 - Present</span>
+            <p>Manage eBay account operations including product listings, listing updates, campaign execution, and marketplace-ready product content. This adds practical business, digital operations, and campaign management experience alongside the cyber security profile.</p>
+          </article>
+          <article class="glass-card reveal-up delay-1 tilt-card">
+            <h3>Cyber Security Intern | Phi-Tech</h3>
+            <span class="subline">June 2023 - August 2023</span>
+            <p>Worked as a cyber security intern with emphasis on Industrial Control Systems security. The internship strengthened awareness of ICS environments, monitoring concerns, and practical security thinking in operational settings.</p>
+          </article>
+          <article class="glass-card reveal-up delay-1 tilt-card">
+            <h3>Certificates</h3>
+            <ul>
+              <li>Connect and Protect: Networks and Network Security — Google Coursera</li>
+              <li>Assets, Threats, and Vulnerabilities — Google Coursera</li>
+              <li>Introduction to Cyber Security Tools and Cyber Attacks — IBM Coursera</li>
+            </ul>
+          </article>
+          <article class="glass-card reveal-up delay-2 tilt-card">
+            <h3>Award</h3>
+            <ul>
+              <li>Entrepreneur Gala — 2nd Position, Air University</li>
+              <li>Presented the IDS for ICS project idea.</li>
+            </ul>
+          </article>
+          <article class="glass-card reveal-up delay-3 tilt-card">
+            <h3>Seminars & Conferences</h3>
+            <ul>
+              <li>IEEE 2nd Annual International Conference on Cyber Warfare & Security — Attendee (2021)</li>
+              <li>IEEE 3rd Annual International Conference on Cyber Warfare & Security — Organizing Committee (2022)</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section container" id="contact">
+        <div class="section-head reveal-up">
+          <div>
+            <div class="eyebrow">06 / Contact</div>
+            <h2>Reach out.</h2>
+          </div>
+          <p>Open to cyber security opportunities across security analysis, SOC, penetration testing, DFIR, ICS security, security research, and technically relevant collaboration.</p>
+        </div>
+        <div class="contact-grid">
+          <article class="contact-card reveal-up">
+            <h3>Contact Details</h3>
+            <div class="contact-list">
+              <a href="mailto:sarmadsaeed2002@gmail.com"><span>Email</span><strong>sarmadsaeed2002@gmail.com</strong></a>
+              <a href="tel:+447376787044"><span>UK Number</span><strong>+44 7376 787044</strong></a>
+              <a href="tel:+923349399165"><span>Pakistan Number</span><strong>+92 334 9399165</strong></a>
+              <a href="https://www.linkedin.com/in/sarmad-saeed-845a7b267" target="_blank" rel="noopener noreferrer"><span>LinkedIn</span><strong>linkedin.com/in/sarmad-saeed-845a7b267</strong></a>
+              <div><span>Nationality</span><strong>Pakistan</strong></div>
+              <div><span>Current Location</span><strong>United Kingdom</strong></div>
+              <a href="Sarmad_Saeed_CV.pdf" download><span>CV PDF</span><strong>Download Professional CV</strong></a>
+              <a href="Sarmad_Saeed_CV.docx" download><span>CV DOCX</span><strong>Download Editable CV</strong></a>
+            </div>
+          </article>
+          <article class="contact-card reveal-up delay-1 terminal-card">
+            <div class="terminal-header">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              <div class="terminal-title">availability.log</div>
+            </div>
+            <div class="terminal-body compact">
+              <div class="line"><span class="prompt">system</span>:<span class="symbol">~$</span> echo availability</div>
+              <div class="output">Available for cyber security opportunities across security analysis, SOC, penetration testing, DFIR, ICS security, research, and digital operations roles.</div>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer container">
+      <span>&copy; 2026 Sarmad Saeed / Ghauri_Boy</span>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
