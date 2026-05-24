@@ -13,6 +13,8 @@ const typedTarget = document.getElementById('typeTarget');
 const mainContent = document.getElementById('main-content');
 const themeColor = document.querySelector('meta[name="theme-color"]');
 const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+const coarsePointerQuery = window.matchMedia('(pointer: coarse)');
+const mobileNavQuery = window.matchMedia('(max-width: 820px)');
 
 function readStoredTheme() {
   try {
@@ -65,6 +67,7 @@ themeToggle?.addEventListener('click', () => {
 function setMenuOpen(open) {
   if (!navLinks || !menuToggle) return;
   navLinks.classList.toggle('open', open);
+  body.classList.toggle('menu-open', open);
   menuToggle.textContent = open ? 'Close' : 'Menu';
   menuToggle.setAttribute('aria-expanded', String(open));
 }
@@ -81,6 +84,23 @@ navLinks?.querySelectorAll('a').forEach(link => {
 document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') setMenuOpen(false);
 });
+
+document.addEventListener('click', (event) => {
+  if (!mobileNavQuery.matches || !navLinks?.classList.contains('open')) return;
+  const target = event.target;
+  if (!(target instanceof Node)) return;
+  if (!navLinks.contains(target) && !menuToggle?.contains(target)) setMenuOpen(false);
+});
+
+function syncMenuWithViewport() {
+  if (!mobileNavQuery.matches) setMenuOpen(false);
+}
+
+if (typeof mobileNavQuery.addEventListener === 'function') {
+  mobileNavQuery.addEventListener('change', syncMenuWithViewport);
+} else if (typeof mobileNavQuery.addListener === 'function') {
+  mobileNavQuery.addListener(syncMenuWithViewport);
+}
 
 if (cursorGlow && !motionQuery.matches && window.matchMedia('(pointer: fine)').matches) {
   window.addEventListener('pointermove', (event) => {
@@ -188,16 +208,26 @@ let drops = [];
 let matrixAnimationId = null;
 const chars = '01ABCDEFGHIJKLMNOPQRSTUVWXYZ#$%&<>/{}[]';
 
+function shouldRunMatrix() {
+  return Boolean(ctx) && !motionQuery.matches && !coarsePointerQuery.matches && window.innerWidth >= 768;
+}
+
 function resizeCanvas() {
-  if (!canvas) return;
-  width = canvas.width = window.innerWidth;
-  height = canvas.height = window.innerHeight;
+  if (!canvas || !ctx) return;
+  const ratio = Math.min(window.devicePixelRatio || 1, 1.5);
+  width = window.innerWidth;
+  height = window.innerHeight;
+  canvas.style.width = `${width}px`;
+  canvas.style.height = `${height}px`;
+  canvas.width = Math.floor(width * ratio);
+  canvas.height = Math.floor(height * ratio);
+  ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
   columns = Math.max(1, Math.floor(width / 18));
   drops = Array.from({ length: columns }, () => Math.floor(Math.random() * height / 18));
 }
 
 function drawMatrix() {
-  if (!ctx || motionQuery.matches) return;
+  if (!ctx || !shouldRunMatrix()) return;
   const isDark = root.getAttribute('data-theme') === 'dark';
   ctx.fillStyle = isDark ? 'rgba(4, 7, 13, 0.08)' : 'rgba(238, 248, 255, 0.12)';
   ctx.fillRect(0, 0, width, height);
@@ -215,7 +245,12 @@ function drawMatrix() {
 }
 
 function startMatrix() {
-  if (!ctx || motionQuery.matches) return;
+  if (!canvas || !ctx || !shouldRunMatrix()) {
+    stopMatrix();
+    if (canvas) canvas.hidden = true;
+    return;
+  }
+  canvas.hidden = false;
   resizeCanvas();
   if (matrixAnimationId) window.cancelAnimationFrame(matrixAnimationId);
   drawMatrix();
@@ -227,7 +262,11 @@ function stopMatrix() {
 }
 
 startMatrix();
-window.addEventListener('resize', resizeCanvas, { passive: true });
+let resizeTimer = null;
+window.addEventListener('resize', () => {
+  if (resizeTimer) window.clearTimeout(resizeTimer);
+  resizeTimer = window.setTimeout(startMatrix, 120);
+}, { passive: true });
 
 function handleMotionPreferenceChange(event) {
   if (event.matches) {
@@ -246,4 +285,15 @@ if (typeof motionQuery.addEventListener === 'function') {
   motionQuery.addEventListener('change', handleMotionPreferenceChange);
 } else if (typeof motionQuery.addListener === 'function') {
   motionQuery.addListener(handleMotionPreferenceChange);
+}
+
+
+function handlePointerPreferenceChange() {
+  startMatrix();
+}
+
+if (typeof coarsePointerQuery.addEventListener === 'function') {
+  coarsePointerQuery.addEventListener('change', handlePointerPreferenceChange);
+} else if (typeof coarsePointerQuery.addListener === 'function') {
+  coarsePointerQuery.addListener(handlePointerPreferenceChange);
 }
